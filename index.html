@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AXONDEV - Software Development Company</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .header.scrolled {
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+
+        .nav-menu a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white !important;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            background: linear-gradient(135deg, #5a6fd8, #6b42a0) !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1.5" fill="white" opacity="0.1"/><circle cx="90" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="10" cy="90" r="2" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            animation: slideUp 1s ease-out 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: slideUp 1s ease-out 0.4s both;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-primary:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #333;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: slideUp 1s ease-out 0.6s both;
+        }
+
+        .code-mockup {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .code-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+        }
+
+        .code-lines {
+            font-family: 'Monaco', monospace;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-line {
+            margin-bottom: 0.5rem;
+            animation: typewriter 3s ease-in-out infinite;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background: #f8fafc;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #718096;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #718096;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Technologies Section */
+        .technologies {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-item {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .tech-item:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .tech-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background: #f8fafc;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            color: #718096;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            color: #718096;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .about-visual {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .team-avatars {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            color: white;
+        }
+
+        .contact .section-header h2,
+        .contact .section-header p {
+            color: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(15px);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .submit-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a202c;
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #667eea;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2d3748;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            text-align: center;
+            color: #a0aec0;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @keyframes typewriter {
+            0%, 50%, 100% { opacity: 0.7; }
+            25%, 75% { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-container,
+            .about-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .nav-menu {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tech-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <div class="logo">AXONDEV</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#technologies">Technologies</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact" class="nav-cta">Get Started</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Innovative Software Solutions for Tomorrow</h1>
+                <p>AXONDEV transforms your ideas into powerful software applications. We deliver cutting-edge solutions that drive business growth and digital transformation.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">Start Your Project →</a>
+                    <a href="#services" class="btn-secondary">View Services</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-mockup">
+                    <div class="code-header">
+                        <div class="code-dot"></div>
+                        <div class="code-dot"></div>
+                        <div class="code-dot"></div>
+                    </div>
+                    <div class="code-lines">
+                        <div class="code-line">const innovation = () => {</div>
+                        <div class="code-line">  return AXONDEV.create({</div>
+                        <div class="code-line">    solution: 'cutting-edge',</div>
+                        <div class="code-line">    quality: 'enterprise-grade',</div>
+                        <div class="code-line">    delivery: 'on-time'</div>
+                        <div class="code-line">  });</div>
+                        <div class="code-line">};</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Comprehensive software development services tailored to your business needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Custom Software Development</h3>
+                    <p>Bespoke software solutions designed to meet your unique business requirements and drive operational efficiency.</p>
+                    <ul class="service-features">
+                        <li>Enterprise Applications</li>
+                        <li>API Development & Integration</li>
+                        <li>Legacy System Modernization</li>
+                        <li>Scalable Architecture Design</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Mobile App Development</h3>
+                    <p>Native and cross-platform mobile applications that deliver exceptional user experiences across all devices.</p>
+                    <ul class="service-features">
+                        <li>iOS & Android Development</li>
+                        <li>React Native & Flutter</li>
+                        <li>Progressive Web Apps</li>
+                        <li>App Store Optimization</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Web Development</h3>
+                    <p>Modern, responsive web applications built with the latest technologies and best practices.</p>
+                    <ul class="service-features">
+                        <li>Full-Stack Development</li>
+                        <li>E-commerce Solutions</li>
+                        <li>Content Management Systems</li>
+                        <li>Performance Optimization</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">☁️</div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Scalable cloud infrastructure and migration services to enhance your business agility and reduce costs.</p>
+                    <ul class="service-features">
+                        <li>AWS, Azure, Google Cloud</li>
+                        <li>Cloud Migration & Strategy</li>
+                        <li>DevOps & CI/CD</li>
+                        <li>Microservices Architecture</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>AI & Machine Learning</h3>
+                    <p>Intelligent solutions powered by artificial intelligence and machine learning to automate and optimize your processes.</p>
+                    <ul class="service-features">
+                        <li>Predictive Analytics</li>
+                        <li>Natural Language Processing</li>
+                        <li>Computer Vision</li>
+                        <li>Intelligent Automation</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Quality Assurance</h3>
+                    <p>Comprehensive testing services to ensure your software meets the highest standards of quality and reliability.</p>
+                    <ul class="service-features">
+                        <li>Automated Testing</li>
+                        <li>Performance Testing</li>
+                        <li>Security Testing</li>
+                        <li>User Acceptance Testing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section id="technologies" class="technologies">
+        <div class="container">
+            <div class="section-header">
+                <h2>Technologies We Master</h2>
+                <p>Leveraging the latest technologies to build robust, scalable, and innovative solutions</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">JS</div>
+                    <h4>JavaScript</h4>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">TS</div>
+                    <h4>TypeScript</h4>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">⚛️</div>
+                    <h4>React</h4>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">📗</div>
+                    <h4>Node.js</h4>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🐍</div>
+                    <h4>Python</h4>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">☕</div>
+                    <h4>Java</h4>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🗄️</div>
+                    <h4>MongoDB</h4>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🐘</div>
+                    <h4>PostgreSQL</h4>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">☁️</div>
+                    <h4>AWS</h4>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🔷</div>
+                    <h4>Azure</h4>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🐳</div>
+                    <h4>Docker</h4>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">⚙️</div>
+                    <h4>Kubernetes</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-content">
+                    <h2>Why Choose AXONDEV?</h2>
+                    <p>With over a decade of combined experience in software development, AXONDEV has established itself as a trusted partner for businesses seeking innovative digital solutions.</p>
+                    <p>Our team of expert developers, designers, and project managers work collaboratively to deliver software that not only meets your requirements but exceeds your expectations.</p>
+                    <p>We pride ourselves on our agile development approach, transparent communication, and commitment to delivering high-quality solutions on time and within budget.</p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Happy Clients</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Support Available</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <h3 style="text-align: center; margin-bottom: 2rem; color: #2d3748;">Our Expert Team</h3>
+                    <div class="team-avatars">
+                        <div class="avatar">AK</div>
+                        <div class="avatar">SM</div>
+                        <div class="avatar">RJ</div>
+                        <div class="avatar">MK</div>
+                        <div class="avatar">LP</div>
+                        <div class="avatar">NS</div>
+                        <div class="avatar">VT</div>
+                        <div class="avatar">DM</div>
+                    </div>
+                    <p style="text-align: center; margin-top: 2rem; color: #718096;">Talented professionals dedicated to your success</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Let's Build Something Amazing Together</h2>
+                <p>Ready to transform your ideas into reality? Get in touch with our team today.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <form onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company" placeholder="Your company name">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Interest</label>
+                            <select id="service" name="service" required>
+                                <option value="">Select a service</option>
+                                <option value="custom-development">Custom Software Development</option>
+                                <option value="mobile-app">Mobile App Development</option>
+                                <option value="web-development">Web Development</option>
+                                <option value="cloud-solutions">Cloud Solutions</option>
+                                <option value="ai-ml">AI & Machine Learning</option>
+                                <option value="qa-testing">Quality Assurance</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Project Budget</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select budget range</option>
+                                <option value="10k-25k">$10K - $25K</option>
+                                <option value="25k-50k">$25K - $50K</option>
+                                <option value="50k-100k">$50K - $100K</option>
+                                <option value="100k+">$100K+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Project Details</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Tell us about your project requirements and goals" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>hello@axondev.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Office</h4>
+                            <p>123 Innovation Street<br>Tech District, TD 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">⏰</div>
+                        <div>
+                            <h4>Business Hours</h4>
+                            <p>Mon - Fri: 9:00 AM - 6:00 PM<br>Weekend: By appointment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>AXONDEV</h4>
+                <p style="color: #a0aec0; margin-bottom: 1rem;">Transforming ideas into innovative software solutions that drive business success.</p>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="#" style="color: #a0aec0; text-decoration: none;">LinkedIn</a>
+                    <a href="#" style="color: #a0aec0; text-decoration: none;">Twitter</a>
+                    <a href="#" style="color: #a0aec0; text-decoration: none;">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Custom Software Development</a></li>
+                    <li><a href="#services">Mobile App Development</a></li>
+                    <li><a href="#services">Web Development</a></li>
+                    <li><a href="#services">Cloud Solutions</a></li>
+                    <li><a href="#services">AI & Machine Learning</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Technologies</h4>
+                <ul>
+                    <li><a href="#technologies">JavaScript & TypeScript</a></li>
+                    <li><a href="#technologies">React & Node.js</a></li>
+                    <li><a href="#technologies">Python & Java</a></li>
+                    <li><a href="#technologies">Cloud Platforms</a></li>
+                    <li><a href="#technologies">DevOps Tools</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 AXONDEV. All rights reserved. | Designed with ❤️ by AXONDEV Team</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.offsetTop;
+                    const offsetPosition = elementPosition - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Form submission handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const company = formData.get('company');
+            const service = formData.get('service');
+            const budget = formData.get('budget');
+            const message = formData.get('message');
+            
+            const submitBtn = event.target.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                alert(`Thank you ${name}! Your inquiry about ${service} has been received. We'll contact you at ${email} within 24 hours to discuss your project.`);
+                event.target.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for scroll animations
+        document.querySelectorAll('.service-card, .tech-item, .about-content, .contact-form').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'all 0.6s ease';
+            observer.observe(element);
+        });
+
+        // Counter animation for stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            const speed = 200;
+
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = parseInt(counter.getAttribute('data-target') || counter.innerText.replace(/[^0-9]/g, ''));
+                    const count = parseInt(counter.innerText.replace(/[^0-9]/g, '')) || 0;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc) + (counter.innerText.includes('+') ? '+' : '');
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = target + (counter.innerText.includes('+') ? '+' : '');
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        // Trigger counter animation when about section is visible
+        const aboutObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    aboutObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.stats-grid');
+        if (statsSection) {
+            // Set data-target attributes
+            document.querySelectorAll('.stat-number').forEach((counter, index) => {
+                const values = ['150', '50', '5', '24'];
+                counter.setAttribute('data-target', values[index]);
+                counter.innerText = '0' + (counter.innerText.includes('+') ? '+' : '');
+            });
+            aboutObserver.observe(statsSection);
+        }
+
+        // Mobile menu toggle (for future enhancement)
+        function toggleMobileMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Add some dynamic background effects
+        document.addEventListener('mousemove', function(e) {
+            const hero = document.querySelector('.hero');
+            if (hero && hero.contains(e.target)) {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                hero.style.background = `linear-gradient(${135 + x * 20}deg, #667eea ${y * 10}%, #764ba2 ${50 + y * 10}%, #f093fb ${90 + y * 10}%)`;
+            }
+        });
+
+        // Service card hover effects
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) rotateX(5deg)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotateX(0)';
+            });
+        });
+
+        // Technology cards interaction
+        document.querySelectorAll('.tech-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const techName = this.querySelector('h4').textContent;
+                alert(`${techName} is one of our core technologies! Contact us to learn how we can leverage ${techName} for your project.`);
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '1';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+        });
+
+        // Initialize
+        document.body.style.opacity = '0';
+    </script>
+</body>
+</html>
